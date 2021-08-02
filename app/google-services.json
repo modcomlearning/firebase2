@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "447726467748",
+    "project_id": "bank-5394a",
+    "storage_bucket": "bank-5394a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447726467748:android:dfd1297799627b28690431",
+        "android_client_info": {
+          "package_name": "com.mwishen.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "447726467748-6qbs2p2up0i6pv8jtu7djmhuehlsqok7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD3lox4BzfCfFieyMul4i6elzaO_1VNW4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "447726467748-6qbs2p2up0i6pv8jtu7djmhuehlsqok7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
