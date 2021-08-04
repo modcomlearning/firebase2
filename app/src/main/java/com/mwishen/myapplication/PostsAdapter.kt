@@ -1,4 +1,5 @@
 package com.mwishen.myapplication
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,18 +11,21 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import com.squareup.picasso.Picasso
+
 class PostsAdapter constructor(options: FirebaseRecyclerOptions<Post>):
                FirebaseRecyclerAdapter<Post, PostsAdapter.PostViewModel>(options) {
                   class PostViewModel internal constructor(private var view: View) : RecyclerView.ViewHolder(view) {
                       internal fun setProductName(
-                          post: Post,
+                          post: Post,//access our data class
                           holder: PostViewModel
                       ) {
+                          //we find views from posted_product.xml
                           val ivImage: ImageView = itemView.findViewById(R.id.ivPost)
                           val textTitle: MaterialTextView = itemView.findViewById(R.id.tvTitle)
                           val tvDescription: MaterialTextView = itemView.findViewById(R.id.tvDescription)
                           val btnReadMore: MaterialButton = itemView.findViewById(R.id.btnMore)
                           apply {
+                              //we use picasso to loa dimage lazily
                               Picasso.get().load(post.image).into(ivImage)
                               textTitle.text = post.title
                               tvDescription.text = "${post.description}\nPosted on :${post.timestamp}"

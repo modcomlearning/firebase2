@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
+import com.mwishen.myapplication.PostsAdapter
 import com.mwishen.myapplication.R
 import com.mwishen.myapplication.databinding.FragmentHomeBinding
 
@@ -20,6 +22,14 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    //we declare a recycler view and access to PostAdapter
+    //The Post adapter defines how single product will be shown
+    //The recycler view loads loops all product to show them
+
+    //create a recycler view and find/init it later
+    private lateinit var recyclerPosts: RecyclerView
+    //create a reference to your adapter , make it empty for now
+    private var mAdapter: PostsAdapter? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,11 +40,8 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        //**********
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
     }
 
