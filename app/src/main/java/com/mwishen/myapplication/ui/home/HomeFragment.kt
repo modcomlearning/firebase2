@@ -70,8 +70,6 @@ class HomeFragment : Fragment() {
         mAdapter!!.startListening()
     }//make it listen in real time
 
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

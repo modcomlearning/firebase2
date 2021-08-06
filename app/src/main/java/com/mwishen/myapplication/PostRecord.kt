@@ -23,6 +23,9 @@ class PostRecord : AppCompatActivity() {
     private lateinit var etTitle : TextInputEditText
     private lateinit var etDescription: TextInputEditText
     //set up 2 firebase variables
+    //go to PostRecord
+    //add this line
+    private lateinit var etCost: TextInputEditText
     private lateinit var storageReference: StorageReference
     private lateinit var databaseReference: DatabaseReference
 
@@ -34,6 +37,8 @@ class PostRecord : AppCompatActivity() {
         ivImage = findViewById(R.id.ivImage)
         etTitle = findViewById(R.id.etTitle)
         etDescription = findViewById(R.id.etDescripion)
+        //find the etCost
+        etCost = findViewById(R.id.etCost)
 
         ivImage.setOnClickListener{
             val galleryIntent = Intent(Intent.ACTION_GET_CONTENT)
@@ -61,6 +66,7 @@ class PostRecord : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
         val title = etTitle.text.toString()
         val descrition = etDescription.text.toString()
+        val cost = etCost.text.toString() //get text for cost
         if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(descrition)){
             //ready to post
             var imageurl = "default"
@@ -77,7 +83,7 @@ class PostRecord : AppCompatActivity() {
                 }.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val downloadUri = task.result
-                        uploadToFirebase(title = title,description= descrition,imageurl = downloadUri.toString())
+                        uploadToFirebase(title = title,description= descrition, cost = cost, imageurl = downloadUri.toString())
 
                     } else {
                         Toast.makeText(this, "Something went wrong while uploading image", Toast.LENGTH_SHORT).show()
@@ -87,17 +93,18 @@ class PostRecord : AppCompatActivity() {
             }else{
                 //image not supplied
                 progressBar.visibility = View.VISIBLE
-                uploadToFirebase(title = title,description= descrition,imageurl = imageurl)
+                uploadToFirebase(title = title,description= descrition,cost = cost, imageurl = imageurl)
             }
         }
     }//post item end here
 
 
     //paste the other function
-    private fun uploadToFirebase(title:String, description:String,  imageurl:String){
+    private fun uploadToFirebase(title:String, description:String, cost: String, imageurl:String){
         val hashMap = HashMap<String, Any>()
         hashMap["title"] = title
         hashMap["description"] = description
+        hashMap["cost"] = cost//*******
         hashMap["timestamp"] = System.currentTimeMillis()
         hashMap["image"]=imageurl
         //random key
